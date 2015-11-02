@@ -6,7 +6,7 @@ use ExtUtils::MakeMaker;
 sub MY::postamble { <<'END'; }
 
 rpm:	dist
-	rpmbuild -ta GRNOC-LockFile-$(VERSION).tar.gz
+	rpmbuild -ta perl-GRNOC-LockFile-$(VERSION).tar.gz
 END
 
 sub MY::test
@@ -24,7 +24,7 @@ test_jenkins : pure_all
 }
 
 WriteMakefile(
-              NAME                => 'GRNOC::LockFile',
+              NAME                => 'perl-GRNOC-LockFile',
               AUTHOR              => 'GRNOC Software Engineering <globalnoc@iu.edu>',
               VERSION_FROM        => 'lib/GRNOC/LockFile.pm',
               PL_FILES            => {},
@@ -37,5 +37,5 @@ WriteMakefile(
 				      'Test::Pod::Coverage' => 0,
 				      'Try::Tiny' => 0},
               dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-              clean               => { FILES => 'GRNOC-LockFile-*' },
+              clean               => { FILES => 'perl-GRNOC-LockFile-*' },
              );
