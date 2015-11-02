@@ -11,15 +11,17 @@ GRNOC::LockFile
 
   try {
 
-    $locker->lock();  
+    $locker->lock();
+
+    # do stuff...
+
+    $locker->unlock();
   }
 
   catch {
 
     warn $_;
   };
-
-  $locker->unlock();
 
 =head1 DESCRIPTION
 
