@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 5;
+use Test::More tests => 6;
 
 use GRNOC::LockFile;
 use Try::Tiny;
@@ -39,3 +39,18 @@ isa_ok( $lock, 'GRNOC::LockFile' );
 
 # make sure file no longer exists
 ok( ! -e '/tmp/GRNOC-LockFile.lock', "/tmp/GRNOC-LockFile.lock no longer exists" );
+
+# make sure unlock dies if its not currently locked
+$failed = 0;
+
+try {
+
+    $locker->unlock();
+}
+
+catch {
+
+    $failed = 1;
+};
+
+ok( $failed, 'caught error trying to unlock()' );
