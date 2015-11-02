@@ -28,8 +28,14 @@ WriteMakefile(
               AUTHOR              => 'GRNOC Software Engineering <globalnoc@iu.edu>',
               VERSION_FROM        => 'lib/GRNOC/LockFile.pm',
               PL_FILES            => {},
-              PREREQ_PM => {
-                           },
+              PREREQ_PM           => {'Moo' => 0,
+				      'Types::Standard' => 0,
+				      'Data::Dumper' => 0,
+				      'LockFile::Simple' => 0},				      
+              BUILD_REQUIRES      => {'Test::More' => 0,
+				      'Test::Pod' => 0,
+				      'Test::Pod::Coverage' => 0,
+				      'Try::Tiny' => 0},
               dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
               clean               => { FILES => 'GRNOC-LockFile-*' },
              );
