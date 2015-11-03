@@ -1,5 +1,5 @@
 Name: perl-GRNOC-LockFile
-Version: 1.0.0
+Version: 1.0.1
 Release: 1%{?dist}
 Summary: GRNOC Lock File Library
 License: Apache License, Version 2.0
@@ -10,6 +10,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Requires: perl >= 5.8.8
 Requires: perl(LockFile::Simple)
+Requires: perl(File::Pid)
 Requires: perl(Moo)
 Requires: perl(Types::Standard)
 BuildRequires: perl(Test::Simple)

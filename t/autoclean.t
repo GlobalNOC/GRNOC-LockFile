@@ -15,4 +15,4 @@ my $lock = $locker->lock();
 # make sure the file exists on disk
 ok( -e '/tmp/GRNOC-LockFile.lock', "/tmp/GRNOC-LockFile.lock exists" );
 
-# dont explicitly unlock it, autoclean2.t will verify its gone after this test exists...
+# dont explicitly unlock it, autoclean2.t will verify we're able to re-lock it..
