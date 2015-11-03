@@ -17,15 +17,16 @@ use Moo;
 use Types::Standard qw( Str InstanceOf );
 
 use LockFile::Simple;
+use File::Pid;
 use Data::Dumper;
 
 has file => ( is => 'ro',
-	      isa => Str,
-	      required => 1 );
+              isa => Str,
+              required => 1 );
 
 has _locker => ( is => 'rwp',
-		 isa => InstanceOf['LockFile::Simple'],
-		 required => 0 );
+                 isa => InstanceOf['LockFile::Simple'],
+                 required => 0 );
 
 our $VERSION = '1.0.0';
 
@@ -35,12 +36,12 @@ sub BUILD {
 
     my ( $self ) = @_;
 
-    # dont ignore any "stale" locks, automatically remove lock on process exit in case we forget to
+    # dont ignore any "stale" locks
     my $locker = LockFile::Simple->make( -format => '%f',
-					 -hold => 0,
-					 -max => 1,
-					 -stale => 0,
-					 -autoclean => 1 );
+                                         -hold => 0,
+                                         -max => 1,
+                                         -stale => 0,
+                                         -autoclean => 0 );
 
     $self->_set__locker( $locker );
 }
@@ -50,6 +51,19 @@ sub BUILD {
 sub lock {
 
     my ( $self ) = @_;
+
+    if ( -e $self->file ) {
+
+        # first, treat it as a pid file to see if the process is even still running or not
+        my $pid_file = File::Pid->new( {'file' => $self->file} );
+
+        # process no longer running
+        if ( !$pid_file->running ) {
+
+            # go ahead and remove the file to allow future locks
+            unlink( $self->file ) or die( "Unable to remove lock " . $self->file . " after detecting process no longer running" );
+        }
+    }
 
     # see if we were able to get ahold of the lock
     my $lock = $self->_locker->trylock( $self->file );

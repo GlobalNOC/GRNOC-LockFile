@@ -29,9 +29,10 @@ This library is used to manage lock files, typically for long-lived processes th
 out of cron to prevent them from stacking on top of one another.  It is a wrapper built on top
 of B<LockFile::Simple> but sets sane defaults for it and makes it easier to use.
 
-Locks will automatically get released if the process terminates before B<unlock()> is called.
-Locks will never be considered "stale" and will always fail if they still exist when calling
-B<lock()>.
+Prior lock files will automatically get destroyed if the original process that created the lock
+is no longer running.  Other than that, locks will never be considered "stale" and will fail if
+they still exist when calling B<lock()>.  It is important that a parent process is always
+responsible for B<lock()>ing and B<unlock()>ing necessary lock files and not done elsewhere.
 
 =head1 CONSTRUCTOR
 

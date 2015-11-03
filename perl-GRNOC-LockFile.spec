@@ -10,6 +10,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 Requires: perl >= 5.8.8
 Requires: perl(LockFile::Simple)
+Requires: perl(File::Pid)
 Requires: perl(Moo)
 Requires: perl(Types::Standard)
 BuildRequires: perl(Test::Simple)
