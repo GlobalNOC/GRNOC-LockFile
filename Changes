@@ -1,0 +1,7 @@
+GRNOC::LockFile 1.0.0 -- Tue Nov 03 2015
+========================================
+
+- First Release
+
+ * ISSUE=12343 provide a new consistent, easy to use lockfile library to use across all GlobalNOC software to prevent errors
+               handling them
