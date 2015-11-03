@@ -42,7 +42,7 @@ if ($formatter) {
         merge           => 1,
         timer           => 1,
         lib             => \@INC,
-        exec            => ['/usr/bin/perl', "-T", '-MDevel::Cover=-silent,1']
+        exec            => ['/usr/bin/perl', '-MDevel::Cover=-silent,1']
     });
 
     my $result = $harness->runtests(@tests);
