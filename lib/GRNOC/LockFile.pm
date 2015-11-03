@@ -28,7 +28,7 @@ has _locker => ( is => 'rwp',
                  isa => InstanceOf['LockFile::Simple'],
                  required => 0 );
 
-our $VERSION = '1.0.0';
+our $VERSION = '1.0.1';
 
 ### constructor builder ###
 
