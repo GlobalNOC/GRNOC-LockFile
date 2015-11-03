@@ -1,3 +1,11 @@
+GRNOC::LockFile 1.0.1 -- Tue Nov 03 2015
+========================================
+
+- Bug Fixes
+
+ * ISSUE=12343 detect when original process that created lock file no longer exists and remove stale lock file
+
+
 GRNOC::LockFile 1.0.0 -- Tue Nov 03 2015
 ========================================
 
